@@ -40,6 +40,10 @@ function App() {
   useEffect(() => {
     faaahAudioRef.current = new Audio('/fahhhhh.mp3');
     faaahAudioRef.current.preload = 'auto';
+    const playPromise = faaahAudioRef.current.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
     return () => {
       if (faaahAudioRef.current) {
         faaahAudioRef.current.pause();
@@ -176,42 +180,18 @@ function App() {
 
               {/* Product Grid Area */}
               <div className="product-grid-section">
-                {genericSuggestion && (
-                  <GenericBanner originalProduct={topResult} genericProduct={genericSuggestion} />
-                )}
-
                 {isLoading ? (
                   <div className="loading-state text-center text-muted py-5" style={{ padding: '60px 0' }}>
                     <div className="loader spinning mx-auto mb-3" style={{ border: '3px solid #f3f3f3', borderTop: '3px solid var(--primary-blue)', borderRadius: '50%', width: '40px', height: '40px' }} />
                     <p>Finding the best matches...</p>
                   </div>
-                ) : searchResults.length > 0 ? (
-                  <div className="product-grid" style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-                    gap: '24px'
-                  }}>
-                    {searchResults.map(product => (
-                      <ProductCard key={product.id} product={product} />
-                    ))}
-                  </div>
                 ) : (
-                  <div className="empty-state">
-                    <div className="text-center">
-                      <h3 className="h3 mb-2">No matching products found.</h3>
-                      <p className="text-muted">Try adjusting your filters or searching for something else.</p>
-                      <button
-                        className="mt-4"
-                        style={{ backgroundColor: 'var(--bg-color)', padding: '10px 20px', borderRadius: '8px' }}
-                        onClick={() => {
-                          setSearchQuery('');
-                          setFilters({ categories: [], brands: [], forms: [], priceRange: 2000 });
-                          setActiveQuickFilters([]);
-                        }}
-                      >
-                        Clear Search & Filters
-                      </button>
-                    </div>
+                  <div className="text-center" style={{ padding: '24px 0' }}>
+                    <img
+                      src="/sathish.jpeg"
+                      alt="Search result"
+                      style={{ maxWidth: '100%', height: 'auto', borderRadius: '16px' }}
+                    />
                   </div>
                 )}
               </div>
