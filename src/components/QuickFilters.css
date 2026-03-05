@@ -1,0 +1,55 @@
+.quick-filters-container {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.quick-filters-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    /* For scrollbar */
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.quick-filters-scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.quick-filters-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.quick-filters-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
+}
+
+.quick-filter-pill {
+    white-space: nowrap;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 100px;
+    padding: 0 20px;
+    height: 40px;
+    min-height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.quick-filter-pill:hover {
+    background-color: var(--bg-color);
+    border-color: var(--text-muted);
+}
+
+.quick-filter-pill.active {
+    background-color: #e0f2fe;
+    /* Light primary blue */
+    color: var(--primary-blue-hover);
+    border-color: var(--primary-blue);
+    font-weight: 600;
+}
