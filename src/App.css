@@ -78,6 +78,18 @@
   flex: 1;
 }
 
+.search-result-image-wrapper {
+  padding: 24px 0;
+}
+
+.search-result-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
   .header-container {
     height: auto;
@@ -107,5 +119,14 @@
   .filters-sidebar {
     display: none;
     /* Hide sidebar on mobile, show bottom sheet instead */
+  }
+
+  .search-result-image-wrapper {
+    padding: 12px 0;
+  }
+
+  .search-result-image {
+    width: 100%;
+    border-radius: 12px;
   }
 }

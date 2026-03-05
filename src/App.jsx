@@ -186,11 +186,11 @@ function App() {
                     <p>Finding the best matches...</p>
                   </div>
                 ) : (
-                  <div className="text-center" style={{ padding: '24px 0' }}>
+                  <div className="text-center search-result-image-wrapper">
                     <img
                       src="/sathish.jpeg"
                       alt="Search result"
-                      style={{ maxWidth: '100%', height: 'auto', borderRadius: '16px' }}
+                      className="search-result-image"
                     />
                   </div>
                 )}
