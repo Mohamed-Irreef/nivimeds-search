@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Filter as FilterIcon } from 'lucide-react';
 import Omnibar from './components/Omnibar';
 import FilterPanel from './components/FilterPanel';
@@ -13,6 +13,7 @@ function App() {
   const [activeQuickFilters, setActiveQuickFilters] = useState([]);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const faaahAudioRef = useRef(null);
 
   // Advanced Filters State
   const [filters, setFilters] = useState({
@@ -25,9 +26,27 @@ function App() {
   const handleSearch = (query) => {
     setSearchQuery(query);
     setIsLoading(true);
+    if (query.trim() && faaahAudioRef.current) {
+      faaahAudioRef.current.currentTime = 0;
+      const playPromise = faaahAudioRef.current.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {});
+      }
+    }
     // Simulate API delay
     setTimeout(() => setIsLoading(false), 400);
   };
+
+  useEffect(() => {
+    faaahAudioRef.current = new Audio('/fahhhhh.mp3');
+    faaahAudioRef.current.preload = 'auto';
+    return () => {
+      if (faaahAudioRef.current) {
+        faaahAudioRef.current.pause();
+        faaahAudioRef.current = null;
+      }
+    };
+  }, []);
 
   const handleToggleQuickFilter = (filterValue) => {
     setActiveQuickFilters(prev =>
